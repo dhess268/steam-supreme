@@ -28,11 +28,13 @@ const initialState = {};
 const GameReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_GAME:
-      return {
-        header_image: action.payload.data.header_image,
-        developers: action.payload.data.developers,
-        publishers: action.payload.data.publishers,
-      };
+      // debugger;
+      // return {
+      //   header_image: action.payload.request.data.header_image,
+      //   developers: action.payload.request.data.developers,
+      //   publishers: action.payload.request.data.publishers,
+      // };
+      return action.payload.data[Object.keys(action.payload.data)[0]].data;
     default:
       return state;
   }

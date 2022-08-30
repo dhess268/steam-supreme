@@ -17,7 +17,7 @@ export function fetchGames(steamID) {
 
 export function fetchGame(gameID) {
   const request = axios.get(
-    `https://store.steampowered.com/api/appdetails?appids=${gameID}`
+    `https://mycorsproxy-dill.herokuapp.com/https://store.steampowered.com/api/appdetails?appids=${gameID}`
   );
 
   return {

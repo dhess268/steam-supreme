@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchGames } from '../action';
+import { fetchGame, fetchGames } from '../action';
 
 const SearchBar = () => {
   const [steamID, setSteamID] = useState('');
@@ -8,7 +8,7 @@ const SearchBar = () => {
 
   const handleSubmitButton = (e) => {
     e.preventDefault();
-    dispatch(fetchGames(steamID));
+    dispatch(fetchGames('76561197960434622'));
   };
 
   return (

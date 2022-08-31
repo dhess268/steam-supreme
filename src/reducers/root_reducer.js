@@ -23,18 +23,16 @@ const GamesReducer = (state = defaultState, action) => {
   }
 };
 
-const initialState = {};
+const initialState = { index: 0 };
 // eslint-disable-next-line default-param-last
-const GameReducer = (state = initialState, action) => {
-  switch (action.type) {
+const GameReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_GAME:
-      // debugger;
-      // return {
-      //   header_image: action.payload.request.data.header_image,
-      //   developers: action.payload.request.data.developers,
-      //   publishers: action.payload.request.data.publishers,
-      // };
-      return action.payload.data[Object.keys(action.payload.data)[0]].data;
+      return {
+        data: payload.data[Object.keys(payload.data)[0]].data,
+        index: payload.index,
+      };
+
     default:
       return state;
   }

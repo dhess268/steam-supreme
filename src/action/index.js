@@ -15,11 +15,20 @@ export function fetchGames(steamID) {
   };
 }
 
-export function fetchGame(gameID) {
-  const request = axios.get(
-    `https://mycorsproxy-dill.herokuapp.com/https://store.steampowered.com/api/appdetails?appids=${gameID}`
+export async function fetchGame(order, index = 0) {
+  let counter = index;
+  let request = await axios.get(
+    `https://mycorsproxy-dill.herokuapp.com/https://store.steampowered.com/api/appdetails?appids=${order[counter]}`
   );
-
+  request.index = counter;
+  if (
+    request.data[order[counter]].success !== true ||
+    request.data[order[counter]].data.type === 'dlc'
+  ) {
+    counter += 1;
+    request = await fetchGame(order, counter);
+    request = request.payload;
+  }
   return {
     type: FETCH_GAME,
     payload: request,

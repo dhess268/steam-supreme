@@ -1,25 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
+// eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member
+import GameDisplay from './containers/GameDisplay';
+import SearchBar from './containers/SeachBar';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <div>
+    <SearchBar /> <GameDisplay />
+  </div>
+);
 
 export default App;

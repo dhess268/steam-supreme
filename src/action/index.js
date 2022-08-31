@@ -3,6 +3,7 @@ import axios from 'axios';
 const { REACT_APP_STEAM_API_KEY } = process.env;
 export const FETCH_GAMES = 'FETCH_GAMES';
 export const FETCH_GAME = 'FETCH_GAME';
+export const ADD_TO_LIST = 'ADD_TO_LIST';
 
 export function fetchGames(steamID) {
   const request = axios.get(
@@ -32,5 +33,12 @@ export async function fetchGame(order, index = 0) {
   return {
     type: FETCH_GAME,
     payload: request,
+  };
+}
+
+export function addToList(game) {
+  return {
+    type: ADD_TO_LIST,
+    payload: game,
   };
 }

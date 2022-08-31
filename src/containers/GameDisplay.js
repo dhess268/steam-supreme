@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import _ from 'lodash';
-import { fetchGame } from '../action';
+import { fetchGame, addToList } from '../action';
 
 const GameDisplay = () => {
   const gamesData = useSelector(({ games }) => games);
@@ -19,15 +19,16 @@ const GameDisplay = () => {
     }
   }, [dispatch, gamesData]);
 
-  const increment = (i) => {
+  const increment = () => {
     setIndex(currentGame.index + 1);
   };
   const handleAddToList = () => {
-    increment(index);
+    dispatch(addToList(currentGame));
+    increment();
   };
 
   const handleSkip = () => {
-    increment(index);
+    increment();
   };
 
   useEffect(() => {

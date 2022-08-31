@@ -1,5 +1,5 @@
 import { normalize, schema } from 'normalizr';
-import { FETCH_GAME, FETCH_GAMES } from '../action';
+import { FETCH_GAME, FETCH_GAMES, ADD_TO_LIST } from '../action';
 
 const defaultState = { entries: {}, order: [] };
 const gamesSchema = new schema.Entity('games', undefined, {
@@ -37,9 +37,21 @@ const GameReducer = (state = initialState, { type, payload }) => {
       return state;
   }
 };
+const initialList = [];
+
+// eslint-disable-next-line default-param-last
+const ListReducer = (state = initialList, action) => {
+  switch (action.type) {
+    case ADD_TO_LIST:
+      return [...state, action.payload];
+    default:
+      return state;
+  }
+};
 // export default GamesReducer;
 const reducers = {
   GamesReducer,
   GameReducer,
+  ListReducer,
 };
 export default reducers;

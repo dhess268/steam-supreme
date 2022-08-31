@@ -8,7 +8,7 @@ const SearchBar = () => {
 
   const handleSubmitButton = (e) => {
     e.preventDefault();
-    dispatch(fetchGames('76561197960434622'));
+    dispatch(fetchGames('76561198062372443'));
   };
 
   return (

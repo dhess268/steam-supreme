@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { useSelector } from 'react-redux';
 
 const MyList = () => {
@@ -15,8 +14,8 @@ const MyList = () => {
 
   const renderGames = () => {
     if (gamesList.length > 0) {
-      return gamesList.map((game) => (
-        <tr>
+      return gamesList.map((game, index) => (
+        <tr key={index}>
           <td>
             <img
               src={game.data.header_image}

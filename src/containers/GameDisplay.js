@@ -20,6 +20,7 @@ const GameDisplay = () => {
   }, [dispatch, gamesData, setIndex]);
 
   const increment = () => {
+    currentGame.disabled = true;
     setIndex(currentGame.index + 1);
   };
   const handleAddToList = () => {
@@ -32,7 +33,7 @@ const GameDisplay = () => {
   };
 
   useEffect(() => {
-    if (!_.isEmpty(gamesData.order)) {
+    if (!_.isEmpty(gamesData.order) && gamesData.order.length > index) {
       dispatch(fetchGame(gamesData.order, index));
     }
   }, [index, dispatch, gamesData.order]);
@@ -48,7 +49,7 @@ const GameDisplay = () => {
     }
   };
 
-  const renderEmpty = () => <div />;
+  const renderEmpty = () => null;
 
   const renderCard = () => (
     <section className="card">
@@ -72,6 +73,7 @@ const GameDisplay = () => {
             type="button"
             onClick={handleAddToList}
             className="card__btn card__add"
+            disabled={currentGame.disabled}
           >
             Add to list
           </button>
@@ -79,6 +81,7 @@ const GameDisplay = () => {
             type="button"
             onClick={handleSkip}
             className="card__btn card__skip"
+            disabled={currentGame.disabled}
           >
             Skip
           </button>

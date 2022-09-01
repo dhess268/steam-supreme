@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import { useSelector } from 'react-redux';
-import MyListRow from '../components/MyListRow';
 
 const MyList = () => {
   const gamesList = useSelector(({ list }) => list);
@@ -18,9 +17,17 @@ const MyList = () => {
     if (gamesList.length > 0) {
       return gamesList.map((game) => (
         <tr>
-          <td className="align-middle">{game.data.name}</td>
-          <td className="align-middle">{game.data.developers[0]}</td>
-          <td className="align-middle">{game.data.steam_appid}</td>
+          <td>
+            <img
+              src={game.data.header_image}
+              alt={`${game.data.name} header`}
+            />
+          </td>
+          <td className="table__value">{game.data.name}</td>
+          <td className="table__value">{game.data.developers[0]}</td>
+          <td className="table__value">
+            {game.data.genres.map((genre) => genre.description).join(', ')}
+          </td>
         </tr>
       ));
     }
@@ -28,12 +35,14 @@ const MyList = () => {
 
   return (
     <div>
+      <h2 className="table__title">Games To Play</h2>
       <table className="table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Developer</th>
-            <th>Game_ID</th>
+            <th className="table__head">Game</th>
+            <th className="table__head">Name</th>
+            <th className="table__head">Developer</th>
+            <th className="table__head">Genre</th>
           </tr>
         </thead>
         <tbody>{renderGames()}</tbody>

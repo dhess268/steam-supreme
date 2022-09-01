@@ -35,9 +35,10 @@
 
 .table {
   background: rgb(255, 255, 255);
-  width: 80%;
+  width: 60vw;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 30px;
 }
 /* ============================================ */
 /* Game Card */
@@ -108,4 +109,16 @@
 }
 .card__skip:active {
   background-color: #ff8882;
+}
+
+.table__title {
+  text-align: center;
+  margin-top: 30px;
+}
+.table__head {
+  text-align: left;
+}
+
+.table__value {
+  text-align: left;
 }

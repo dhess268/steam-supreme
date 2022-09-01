@@ -24,7 +24,7 @@ export async function fetchGame(order, index = 0) {
   request.index = counter;
   if (
     request.data[order[counter]].success !== true ||
-    request.data[order[counter]].data.type === 'dlc'
+    request.data[order[counter]].data.type !== 'game'
   ) {
     counter += 1;
     request = await fetchGame(order, counter);

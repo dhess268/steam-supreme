@@ -1,48 +1,55 @@
-/* eslint-disable arrow-body-style */
-// import { useState, useRef } from 'react';
 import _ from 'lodash';
 import { useSelector } from 'react-redux';
-// import MyListRow from '../components/MyListRow';
-// import { fetchGame, fetchGames } from '../action';
 
 const MyList = () => {
   const gamesList = useSelector(({ list }) => list);
 
   // const renderGames = () =>
   //   gamesList.map((game) => (
-  //     <MyListRow
-  //       name={game.data.name}
-  //       developer={game.data.developers[0]}
-  //       gameId={game.data.steam_appid}
-  //     />
+  // <MyListRow
+  //   name={game.data.name}
+  //   developer={game.data.developers ? game.data.developers[0] : 'N/a'}
+  //   gameId={game.data.steam_appid}
+  // />
   //   ));
+
   const renderGames = () => {
     if (gamesList.length > 0) {
       return gamesList.map((game) => (
         <tr>
-          <td className="align-middle">{game.data.name}</td>
-          <td className="align-middle">{game.data.developers[0]}</td>
-          <td className="align-middle">{game.data.steam_appid}</td>
+          <td>
+            <img
+              src={game.data.header_image}
+              alt={`${game.data.name} header`}
+              className="table__image"
+            />
+          </td>
+          <td className="table__value">{game.data.name}</td>
+          <td className="table__value">{game.data.developers[0]}</td>
+          <td className="table__value">
+            {game.data.genres.map((genre) => genre.description).join(', ')}
+          </td>
         </tr>
       ));
     }
-    return <div>Empty</div>;
   };
 
-  return (
+  return gamesList.length > 0 ? (
     <div>
+      <h2 className="table__title">Games To Play</h2>
       <table className="table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Developer</th>
-            <th>Game_ID</th>
+            <th className="table__head">Game</th>
+            <th className="table__head">Name</th>
+            <th className="table__head">Developer</th>
+            <th className="table__head">Genre</th>
           </tr>
         </thead>
         <tbody>{renderGames()}</tbody>
       </table>
     </div>
-  );
+  ) : null;
 };
 
 export default MyList;

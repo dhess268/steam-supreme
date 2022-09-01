@@ -16,8 +16,9 @@ const GameDisplay = () => {
           gamesData.entries[a].playtime_forever -
           gamesData.entries[b].playtime_forever
       );
+      setIndex(0);
     }
-  }, [dispatch, gamesData]);
+  }, [dispatch, gamesData, setIndex]);
 
   const increment = () => {
     setIndex(currentGame.index + 1);

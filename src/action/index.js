@@ -5,9 +5,14 @@ export const FETCH_GAMES = 'FETCH_GAMES';
 export const FETCH_GAME = 'FETCH_GAME';
 export const ADD_TO_LIST = 'ADD_TO_LIST';
 export const RESET_LIST = 'RESET_LIST';
+const FETCH_GAMES_BASE_URL =
+  'https://mycorsproxy-dill.herokuapp.com/https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001';
+const FETCH_GAME_BASE_URL =
+  'https://mycorsproxy-dill.herokuapp.com/https://store.steampowered.com/api';
+
 export function fetchGames(steamID) {
   const request = axios.get(
-    `https://mycorsproxy-dill.herokuapp.com/https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${REACT_APP_STEAM_API_KEY}&steamid=${steamID}&format=json`
+    `${FETCH_GAMES_BASE_URL}/?key=${REACT_APP_STEAM_API_KEY}&steamid=${steamID}&format=json`
   );
 
   return {
@@ -19,7 +24,7 @@ export function fetchGames(steamID) {
 export async function fetchGame(order, index = 0) {
   let counter = index;
   let request = await axios.get(
-    `https://mycorsproxy-dill.herokuapp.com/https://store.steampowered.com/api/appdetails?appids=${order[counter]}`
+    `${FETCH_GAME_BASE_URL}/appdetails?appids=${order[counter]}`
   );
   request.index = counter;
   request.disabled = false;

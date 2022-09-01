@@ -39,23 +39,6 @@ const SearchBar = () => {
         Search
       </button>
     </form>
-
-    // <div className="input-group mb-8">
-    //   <input
-    //     type="text"
-    //     className="form-control"
-    //     placeholder="Enter your Steam ID"
-    //     value={steamID}
-    //     onChange={(e) => setSteamID(e.target.value)}
-    //   />
-    //   <button
-    //     type="submit"
-    //     className="btn btn-outline-secondary"
-    //     onClick={handleSubmitButton}
-    //   >
-    //     Search
-    //   </button>
-    // </div>
   );
 };
 

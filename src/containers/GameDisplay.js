@@ -8,6 +8,8 @@ const GameDisplay = () => {
   const currentGame = useSelector(({ game }) => game);
   const dispatch = useDispatch();
   const [index, setIndex] = useState(0);
+
+  // Ran only when the user enters a steam ID
   useEffect(() => {
     if (!_.isEmpty(gamesData.entries)) {
       gamesData.order.sort(
@@ -18,6 +20,13 @@ const GameDisplay = () => {
       setIndex(0);
     }
   }, [dispatch, gamesData, setIndex]);
+
+  // Ran every time a new game will be shown to the user via the update of index
+  useEffect(() => {
+    if (!_.isEmpty(gamesData.order) && gamesData.order.length > index) {
+      dispatch(fetchGame(gamesData.order, index));
+    }
+  }, [index, dispatch, gamesData.order]);
 
   const increment = () => {
     currentGame.disabled = true;
@@ -31,12 +40,6 @@ const GameDisplay = () => {
   const handleSkip = () => {
     increment();
   };
-
-  useEffect(() => {
-    if (!_.isEmpty(gamesData.order) && gamesData.order.length > index) {
-      dispatch(fetchGame(gamesData.order, index));
-    }
-  }, [index, dispatch, gamesData.order]);
 
   const renderGenres = () => {
     if (currentGame.data.genres) {

@@ -1,5 +1,4 @@
 import { normalize, schema } from 'normalizr';
-import _ from 'lodash';
 import { FETCH_GAME, FETCH_GAMES, ADD_TO_LIST, RESET_LIST } from '../action';
 
 const defaultState = { entries: {}, order: [] };
@@ -11,20 +10,19 @@ const gamesSchema = new schema.Entity('games', undefined, {
 const GamesReducer = (state = defaultState, action) => {
   switch (action.type) {
     case FETCH_GAMES:
-      // eslint-disable-next-line no-case-declarations
-      const normalizedGames = normalize(
-        _.isEmpty(action.payload.data)
-          ? {}
-          : action.payload.data.response.games,
-        [gamesSchema]
-      );
-      if (normalizedGames.result.length === 0) {
+      try {
+        // eslint-disable-next-line no-case-declarations
+        const normalizedGames = normalize(action.payload.data.response.games, [
+          gamesSchema,
+        ]);
+        return {
+          entries: normalizedGames.entities.games,
+          order: normalizedGames.result,
+        };
+      } catch (error) {
         alert('Invalid steam ID entered');
+        return state;
       }
-      return {
-        entries: normalizedGames.entities.games,
-        order: normalizedGames.result,
-      };
     default:
       return state;
   }

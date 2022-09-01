@@ -8,11 +8,16 @@ const MyList = () => {
       return gamesList.map((game, index) => (
         <tr key={index}>
           <td>
-            <img
-              src={game.data.header_image}
-              alt={`${game.data.name} header`}
-              className="table__image"
-            />
+            <a
+              href={`https://store.steampowered.com/app/${game.data.steam_appid}/${game.data.name}/`}
+              className="table__image-link"
+            >
+              <img
+                src={game.data.header_image}
+                alt={`${game.data.name} header`}
+                className="table__image"
+              />
+            </a>
           </td>
           <td className="table__value">{game.data.name}</td>
           <td className="table__value">{game.data.developers[0]}</td>

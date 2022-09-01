@@ -122,3 +122,6 @@
 .table__value {
   text-align: left;
 }
+.table__image {
+  max-width: 80%;
+}

@@ -21,6 +21,7 @@ const MyList = () => {
             <img
               src={game.data.header_image}
               alt={`${game.data.name} header`}
+              className="table__image"
             />
           </td>
           <td className="table__value">{game.data.name}</td>
@@ -33,7 +34,7 @@ const MyList = () => {
     }
   };
 
-  return (
+  return gamesList.length > 0 ? (
     <div>
       <h2 className="table__title">Games To Play</h2>
       <table className="table">
@@ -48,7 +49,7 @@ const MyList = () => {
         <tbody>{renderGames()}</tbody>
       </table>
     </div>
-  );
+  ) : null;
 };
 
 export default MyList;

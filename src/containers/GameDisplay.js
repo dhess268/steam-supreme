@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import _ from 'lodash';
 import { fetchGame, addToList } from '../action';
+import '../App.css';
 
 const GameDisplay = () => {
   const gamesData = useSelector(({ games }) => games);
@@ -37,7 +38,7 @@ const GameDisplay = () => {
     }
   }, [index, dispatch, gamesData.order]);
 
-  const renderEmpty = () => <div>empty</div>;
+  const renderEmpty = () => <div />;
 
   const renderCard = () => (
     <div className="card">
@@ -48,9 +49,9 @@ const GameDisplay = () => {
       />
       <div className="card-body">
         <h5 className="card-title">{currentGame.data.name}</h5>
-        <div className="card-text">
-          <div className="">{currentGame.data.developers}</div>
-        </div>
+        {/* <div className="card-text"> */}
+        {/* <div className="">{currentGame.data.developers}</div> */}
+        {/* </div> */}
         <div>
           <button type="button" onClick={handleAddToList}>
             Add to list

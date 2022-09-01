@@ -1,3 +1,6 @@
+import '../App.css';
+
+// eslint-disable-next-line react/prop-types
 export default function MyListRow({ name, developer, gameId }) {
   return (
     <div>

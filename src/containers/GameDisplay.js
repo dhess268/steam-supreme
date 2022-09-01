@@ -8,7 +8,6 @@ const GameDisplay = () => {
   const currentGame = useSelector(({ game }) => game);
   const dispatch = useDispatch();
   const [index, setIndex] = useState(0);
-
   useEffect(() => {
     if (!_.isEmpty(gamesData.entries)) {
       gamesData.order.sort(
@@ -60,6 +59,9 @@ const GameDisplay = () => {
       />
       <section className="card__body">
         <h2 className="card__name">{currentGame.data.name}</h2>
+        <p className="card__description">
+          {currentGame.data.short_description}
+        </p>
         <span className="card__developers">
           Developed by: {currentGame.data.developers}
         </span>

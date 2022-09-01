@@ -56,7 +56,7 @@
   border-radius: 4%;
   border: rgb(221, 221, 221) 1px solid;
   height: 70vh;
-  min-height: 500px;
+  min-height: 700px;
 }
 
 .card__img {
@@ -67,7 +67,9 @@
   width: 70%;
   display: flex;
   flex-direction: column;
-  height: 50%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-height: 400px;
 }
 .card__name {
   font-size: 35px;

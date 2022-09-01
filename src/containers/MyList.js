@@ -1,5 +1,3 @@
-// import { useState, useRef } from 'react';
-import _ from 'lodash';
 import { useSelector } from 'react-redux';
 import MyListRow from '../components/MyListRow';
 // import { fetchGame, fetchGames } from '../action';
@@ -11,7 +9,7 @@ const MyList = () => {
     gamesList.map((game) => (
       <MyListRow
         name={game.data.name}
-        developer={game.data.developers[0]}
+        developer={game.data.developers ? game.data.developers[0] : 'N/a'}
         gameId={game.data.steam_appid}
       />
     ));

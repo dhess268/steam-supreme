@@ -1,6 +1,6 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchGame, fetchGames } from '../action';
+import { fetchGames } from '../action';
 
 const SearchBar = () => {
   const [steamID, setSteamID] = useState('');
@@ -8,23 +8,22 @@ const SearchBar = () => {
 
   const handleSubmitButton = (e) => {
     e.preventDefault();
-    dispatch(fetchGames('76561198062372443'));
+    dispatch(fetchGames(steamID));
   };
 
   return (
-    <div>
-      <form>
-        <input
-          type="text"
-          placeholder="Enter your Steam ID"
-          value={steamID}
-          onChange={(e) => setSteamID(e.target.value)}
-        />
-        <button type="submit" onClick={handleSubmitButton}>
-          Search
-        </button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmitButton} className="search">
+      <input
+        type="text"
+        placeholder="Enter your Steam ID"
+        className="search__text"
+        value={steamID}
+        onChange={(e) => setSteamID(e.target.value)}
+      />
+      <button type="submit" className="search__btn">
+        Search
+      </button>
+    </form>
   );
 };
 

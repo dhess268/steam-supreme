@@ -37,30 +37,46 @@ const GameDisplay = () => {
     }
   }, [index, dispatch, gamesData.order]);
 
+  const renderGenres = () => {
+    if (currentGame.data.genres) {
+      return currentGame.data.genres.map((genre, i) => {
+        if (currentGame.data.genres - 1 === i) {
+          return <span key={i}>{genre.description}</span>;
+        }
+        return <span key={i}>{genre.description}, </span>;
+      });
+    }
+  };
   const renderEmpty = () => <div>empty</div>;
 
   const renderCard = () => (
-    <div className="card">
+    <section className="card">
       <img
-        className="card-img"
+        className="card__img"
         src={currentGame.data.header_image}
-        alt="nothing"
+        alt={`${currentGame.data.name} steam header`}
       />
-      <div className="card-body">
-        <h5 className="card-title">{currentGame.data.name}</h5>
-        <div className="card-text">
-          <div className="">{currentGame.data.developers}</div>
-        </div>
-        <div>
-          <button type="button" onClick={handleAddToList}>
+      <section className="card__body">
+        <h2 className="card__name">{currentGame.data.name}</h2>
+        <span className="card__developers">
+          Developed by: {currentGame.data.developers}
+        </span>
+        <br />
+        <span className="card__genres">Genre: {renderGenres()}</span>
+        <section className="card__btn-section">
+          <button
+            type="button"
+            onClick={handleAddToList}
+            className="card__btn card__add"
+          >
             Add to list
           </button>
-          <button type="button" onClick={handleSkip}>
+          <button type="button" onClick={handleSkip} className="card__btn">
             Skip
           </button>
-        </div>
-      </div>
-    </div>
+        </section>
+      </section>
+    </section>
   );
 
   return _.isEmpty(currentGame.data) ? renderEmpty() : renderCard();

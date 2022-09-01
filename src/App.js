@@ -5,9 +5,11 @@ import MyList from './containers/MyList';
 import SearchBar from './containers/SeachBar';
 
 const App = () => (
-  <div>
-    <SearchBar /> <GameDisplay /> <MyList />
-  </div>
+  <section className="root">
+    <SearchBar />
+    <GameDisplay />
+    <MyList />
+  </section>
 );
 
 export default App;

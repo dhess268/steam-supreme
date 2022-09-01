@@ -22,6 +22,7 @@ export async function fetchGame(order, index = 0) {
     `https://mycorsproxy-dill.herokuapp.com/https://store.steampowered.com/api/appdetails?appids=${order[counter]}`
   );
   request.index = counter;
+  request.disabled = false;
   if (
     request.data[order[counter]].success !== true ||
     request.data[order[counter]].data.type !== 'game'

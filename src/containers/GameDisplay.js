@@ -48,7 +48,8 @@ const GameDisplay = () => {
       });
     }
   };
-  const renderEmpty = () => <div>empty</div>;
+
+  const renderEmpty = () => <div />;
 
   const renderCard = () => (
     <section className="card">

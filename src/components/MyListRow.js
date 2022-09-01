@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 
+
 export default function MyListRow({ name, developer, gameId }) {
   return (
     <div>

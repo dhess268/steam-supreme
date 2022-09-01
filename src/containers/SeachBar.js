@@ -1,14 +1,29 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchGames } from '../action';
+import { fetchGames, resetList } from '../action';
 
 const SearchBar = () => {
   const [steamID, setSteamID] = useState('');
   const dispatch = useDispatch();
 
+  const checkValidNumber = () => {
+    if (
+      steamID.length === 17 &&
+      !Number.isNaN(steamID) &&
+      Number.isInteger(parseInt(steamID))
+    ) {
+      return true;
+    }
+    alert('Please enter a steam ID number of length 17');
+    return false;
+  };
   const handleSubmitButton = (e) => {
     e.preventDefault();
-    dispatch(fetchGames(steamID));
+    if (checkValidNumber()) {
+      dispatch(fetchGames(steamID));
+      setSteamID('');
+      dispatch(resetList());
+    }
   };
 
   return (

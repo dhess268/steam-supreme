@@ -73,7 +73,11 @@ const GameDisplay = () => {
           >
             Add to list
           </button>
-          <button type="button" onClick={handleSkip} className="card__btn">
+          <button
+            type="button"
+            onClick={handleSkip}
+            className="card__btn card__skip"
+          >
             Skip
           </button>
         </section>
